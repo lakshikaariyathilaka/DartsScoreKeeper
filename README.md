@@ -1,4 +1,4 @@
-# Smart Darts Score Keeper - Group 12
+# Smart Darts Score Keeper
 
 
 

@@ -1,0 +1,372 @@
+/* =========================
+   Global Reset & Base Styles
+   ========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #222;
+  min-height: 100vh;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+/* Accessible helpers */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* =========================
+   Layout Containers
+   ========================= */
+/* IDs used by the app: #setup-screen and #game-screen */
+#setup-screen,
+#game-screen {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+#game-screen {
+  margin-top: 20px;
+}
+
+/* Header */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.game-header h1 {
+  font-size: 1.25rem;
+}
+
+/* =========================
+   Form Elements
+   ========================= */
+input,
+select,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #9aa4ad;
+}
+
+/* =========================
+   Setup Screen Styles
+   ========================= */
+#setup-screen {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
+#setup-screen .players-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+#setup-screen input#player1,
+#setup-screen input#player2 {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: linear-gradient(180deg, #fff, #fbfdff);
+}
+
+#setup-screen select {
+  max-width: 220px;
+}
+
+#setup-screen .controls-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#start-game {
+  background: linear-gradient(180deg,#0d6efd,#0b5ed7);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(13,110,253,0.14);
+}
+
+#start-game:hover { transform: translateY(-1px); }
+
+.description {
+  background: #eef6ff;
+  border-left: 4px solid #4da3ff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #06324a;
+}
+
+.welcome {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  color: #08304a;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  #setup-screen .players-row { grid-template-columns: 1fr; }
+  #setup-screen .controls-row { flex-direction: column; align-items: stretch; }
+  #start-game { width: 100%; }
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid #005fcc;
+  box-shadow: 0 0 0 3px rgba(0, 95, 204, 0.12);
+}
+
+/* Buttons */
+button {
+  background-color: #0069d9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* =========================
+   Player Scoreboard
+   ========================= */
+.scoreboard {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.player {
+  flex: 1 1 0;
+  padding: 14px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.player h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.player p {
+  margin: 6px 0;
+}
+
+.player .stat {
+  font-weight: 700;
+}
+
+.player.active {
+  background-color: #eaf4ff;
+  box-shadow: 0 2px 8px rgba(0,95,204,0.09);
+  border-color: rgba(0,95,204,0.18);
+}
+
+/* =========================
+   Game Input Section
+   ========================= */
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#hit {
+  flex: 1 1 150px;
+  margin-top: 0;
+}
+
+#hit-btn {
+  flex: 0 0 140px;
+}
+
+/* =========================
+   Theme Toggle Button
+   ========================= */
+/* theme toggle used on multiple screens */
+.theme-toggle {
+  max-width: 160px;
+  display: inline-block;
+  padding: 8px 10px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  color: inherit;
+}
+
+.theme-toggle:hover { background: rgba(0,0,0,0.02); }
+
+/* Light-theme appearance for the toggle: subtle light-blue shade */
+body:not(.dark) .theme-toggle {
+  background: linear-gradient(180deg, #eef8ff 0%, #e6f4ff 100%);
+  border-color: #cfeaff;
+  color: #09304a;
+}
+
+body:not(.dark) .theme-toggle:hover {
+  background: linear-gradient(180deg, #e6f4ff 0%, #d6ecff 100%);
+}
+
+/* =========================
+   Dark Mode
+   ========================= */
+body.dark {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+body.dark #setup-screen,
+body.dark #game-screen {
+  background-color: #1f1f1f;
+  box-shadow: none;
+}
+
+body.dark input,
+body.dark select {
+  background-color: #2a2a2a;
+  color: white;
+  border-color: #444;
+}
+
+body.dark .player {
+  background-color: #222;
+  border-color: rgba(255,255,255,0.04);
+}
+
+body.dark .player.active {
+  background-color: #333;
+  border-left-color: #4da3ff;
+}
+
+body.dark button {
+  background-color: #4da3ff;
+}
+
+body.dark button:hover {
+  background-color: #1c7ed6;
+}
+
+/* =========================
+   Responsive Design
+   ========================= */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  #setup,
+  #game {
+    padding: 15px;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================
+   Accessibility Enhancements
+   ========================= */
+button:focus-visible {
+  outline: 4px solid #ffbf47;
+}
+
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #ffbf47;
+}
+
+/* Flash / notification */
+.flash {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 12px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.flash--visible { opacity: 1; transform: translateY(0); }
+
+.flash--info { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.flash--success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.flash--error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+@keyframes flashIn {
+  from { transform: translateY(-6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.flash--visible { animation: flashIn 220ms ease-out; }
+
+/* New game button appearance */
+#new-game {
+  background: #28a745;
+  margin-left: 8px;
+}
+
+#new-game:hover { background: #218838; }
+
+/* Pause and Exit buttons */
+#pause-btn {
+  background: #ffc107;
+  color: #212529;
+  margin-left: 8px;
+  flex: 0 0 100px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+#pause-btn[aria-pressed="true"] {
+  background: #20c997;
+  color: #fff;
+}
+
+#exit-btn {
+  background: #dc3545;
+  margin-left: 8px;
+  flex: 0 0 100px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+#exit-btn:hover { background: #c82333; }
+
